@@ -7,7 +7,6 @@ import {
   DirectionsRenderer,
   Marker,
   Polygon,
-  Polyline,
 } from "react-google-maps";
 import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";
 

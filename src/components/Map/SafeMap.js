@@ -2,27 +2,41 @@
 import React from "react";
 import uuid from "react-uuid";
 import {
-  // makeStyles,
+  makeStyles,
   Grid,
   Select,
   FormControl,
   FormHelperText,
   InputLabel,
   MenuItem,
-  Button,
   ButtonGroup,
+  IconButton,
 } from "@material-ui/core";
 // Places Search-Bar import
 import Search from "./Search";
 // Google Map import
 import Map from "./Map";
+//Icons
+import HelpIcon from "@material-ui/icons/Help";
+import ReplayIcon from "@material-ui/icons/Replay";
+import ExploreOffSharpIcon from "@material-ui/icons/ExploreOffSharp";
+import EditLocationSharpIcon from "@material-ui/icons/EditLocationSharp";
+import AddLocationSharpIcon from "@material-ui/icons/AddLocationSharp";
+import CheckCircleTwoToneIcon from "@material-ui/icons/CheckCircleTwoTone";
+import BlurCircularTwoToneIcon from "@material-ui/icons/BlurCircularTwoTone";
+import BlurOffTwoToneIcon from "@material-ui/icons/BlurOffTwoTone";
 
 var directionsService; // will be assigned google's DirectionsService()
 
 // Style Classes Used for the Components
-// const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  section: {
+    padding: "15px",
+  },
+}));
 
 export default function SafeMap({ data, origin }) {
+  const classes = useStyles();
   // Array containing all Zone Names
   const zoneNames = data.map((zone) => zone.properties.zname);
   // Stores the Selected Zone
@@ -152,19 +166,27 @@ export default function SafeMap({ data, origin }) {
   return (
     <>
       {!route.addWaypointsView && (
-        <Grid item xs={12} sm={6} md={6}>
+        <Grid item xs={10} sm={8} md={8} className={classes.section}>
           <Search setRoute={setRoute} resetOriginView={route.resetOriginView} />
         </Grid>
       )}
       {!route.resetOriginView && !route.addWaypointsView && (
         <>
-          <Grid item>
-            <FormControl xs={8} sm={3} md={3}>
+          <Grid
+            item
+            xs={12}
+            sm={4}
+            md={4}
+            className={classes.section}
+            style={{ textAlign: "center" }}
+          >
+            <FormControl>
               <InputLabel id='zone-selector-label'>Selected Zone</InputLabel>
               <Select
                 labelId='zone-selector-label'
                 id='zone-selector'
                 value={selectedZone}
+                variant='filled'
                 onChange={(e) => {
                   changeZone(e);
                 }}
@@ -180,62 +202,97 @@ export default function SafeMap({ data, origin }) {
               </FormHelperText>
             </FormControl>
           </Grid>
-          <Grid item xs={4} sm={3} md={3}>
-            <Button
+          {/* <Grid
+            item
+            xs={3}
+            sm={2}
+            md={2}
+            className={classes.section}
+            style={{ textAlign: "center" }}
+          >
+            <IconButton
               variant='outlined'
               color='secondary'
-              style={{ padding: "15px" }}
-              fullWidth
+              style={{ padding: 0 }}
               onClick={() => {
                 toggleClusterView();
               }}
             >
-              SHOW ALL CLUSTERS
-            </Button>
-          </Grid>
+              {!showAllClusters ? (
+                <BlurCircularTwoToneIcon style={{ fontSize: 60 }} />
+              ) : (
+                <BlurOffTwoToneIcon style={{ fontSize: 60 }} />
+              )}
+            </IconButton>
+          </Grid> */}
         </>
       )}
-      <Grid item xs={12} sm={12} md={12}>
+      <Grid item xs={12} sm={12} md={12} className={classes.section}>
         <Map {...mapProps} />
       </Grid>
-      <Grid item xs={12} sm={12} md={12}>
-        <ButtonGroup size='large' color='primary' fullWidth>
-          <Button>Instructions</Button>
+      <Grid item xs={6} sm={6} md={6} className={classes.section}>
+        <ButtonGroup
+          size='large'
+          color='secondary'
+          fullWidth
+          style={{ justifyContent: "space-evenly" }}
+        >
+          <IconButton>
+            <HelpIcon style={{ fontSize: 50 }} />
+          </IconButton>
           {route.addWaypointsView && (
-            <Button
+            <IconButton
               disabled={route.waypoints.length === 0}
               onClick={() => {
                 undoWaypoint();
               }}
             >
-              Undo
-            </Button>
+              <ReplayIcon style={{ fontSize: 50 }} />
+            </IconButton>
           )}
-          <Button
+          <IconButton
             disabled={route.directions === null}
             onClick={() => {
               toggleAddWaypointsView();
             }}
           >
-            {!route.addWaypointsView ? "Add Waypoints" : "Set Waypoints"}
-          </Button>
-          <Button
+            {!route.addWaypointsView ? (
+              <AddLocationSharpIcon style={{ fontSize: 50 }} />
+            ) : (
+              <CheckCircleTwoToneIcon style={{ fontSize: 50 }} />
+            )}
+            {/*!route.addWaypointsView ? "Add Waypoints" : "Set Waypoints"*/}
+          </IconButton>
+          <IconButton
             disabled={route.directions === null}
             onClick={() => {
               dropRoute();
             }}
           >
-            Drop Route
-          </Button>
+            <ExploreOffSharpIcon style={{ fontSize: 50 }} />
+          </IconButton>
           {!route.addWaypointsView && (
-            <Button
+            <IconButton
               onClick={() => {
                 toggleResetOriginView();
               }}
             >
-              Reset Origin
-            </Button>
+              <EditLocationSharpIcon style={{ fontSize: 50 }} />
+            </IconButton>
           )}
+          <IconButton
+            variant='outlined'
+            color='secondary'
+            onClick={() => {
+              toggleClusterView();
+            }}
+          >
+            {!showAllClusters ? (
+              <BlurCircularTwoToneIcon style={{ fontSize: 50 }} />
+            ) : (
+              <BlurOffTwoToneIcon style={{ fontSize: 50 }} />
+            )}
+          </IconButton>
         </ButtonGroup>
       </Grid>
     </>

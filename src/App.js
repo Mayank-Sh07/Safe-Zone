@@ -5,6 +5,8 @@ import { makeStyles, Grid } from "@material-ui/core";
 import Navbar from "./components/Navbar/Navbar";
 import SafeMap from "./components/Map/SafeMap";
 import { data } from "./Data/data";
+import { Switch, Route } from "react-router-dom";
+import Home from "./components/Home/Home";
 
 // Styling classes used in the components
 const useStyles = makeStyles((theme) => ({
@@ -12,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   pageContainer: {
-    padding: "15px",
+    padding: "0px",
   },
 }));
 
@@ -62,23 +64,22 @@ export default function App() {
         <Grid item xs={12} sm={12} md={12} style={{}}>
           <Navbar />
         </Grid>
-        <Grid
-          container
-          direction='row'
-          spacing={3}
-          justify='space-around'
-          alignItems='center'
-          className={classes.pageContainer}
-        >
-          {/* Only Load Map if data has been Loaded */}
-          {isLoaded ? (
-            <SafeMap
-              data={zoneData}
-              origin={{ lat: latitude, lng: longitude }}
-            />
-          ) : (
-            <h3>Loading</h3>
-          )}
+        <Grid container direction='row' justify='center'>
+          <Switch>
+            {/* <Route path='/map'>
+              {isLoaded ? (
+                <SafeMap
+                  data={zoneData}
+                  origin={{ lat: latitude, lng: longitude }}
+                />
+              ) : (
+                <h3>Loading</h3>
+              )}
+            </Route> */}
+            <Route exact path='/'>
+              <Home />
+            </Route>
+          </Switch>
         </Grid>
       </Grid>
     </div>
