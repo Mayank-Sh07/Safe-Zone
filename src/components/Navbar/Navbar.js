@@ -7,11 +7,12 @@ import {
   Toolbar,
   IconButton,
   useTheme,
+  Button,
 } from "@material-ui/core";
-import FullScreenIcon from "@material-ui/icons/FullscreenSharp";
+import BrightnessIcon from "@material-ui/icons/Brightness7Rounded";
 // Side-drawer along with Icon
 import SideDrawer from "./SideDrawer";
-import Logo from "./Logo";
+import Logo from "../Home/Logo";
 
 // Style Classes Used for the Components
 const useStyles = makeStyles((theme) => ({
@@ -49,13 +50,15 @@ export default function Navbar() {
               <Logo
                 height='50px'
                 width='150px'
-                color1={theme.palette.secondary.light}
-                color2={theme.palette.primary.light}
-                shadow={theme.palette.secondary.main}
+                color1={theme.palette.primary.black}
+                color2={theme.palette.secondary.black}
+                shadow={theme.palette.primary.main}
+                id1='navbar-abc'
+                id2='navbar-xyz'
               />
             </div>
             <IconButton>
-              <FullScreenIcon />
+              <BrightnessIcon />
             </IconButton>
             <SideDrawer />
           </Toolbar>

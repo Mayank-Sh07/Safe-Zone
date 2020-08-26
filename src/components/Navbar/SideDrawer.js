@@ -9,6 +9,7 @@ import {
   IconButton,
   Drawer,
   Divider,
+  useTheme,
 } from "@material-ui/core";
 import uuid from "react-uuid";
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmailSharp";
@@ -16,6 +17,7 @@ import MapIcon from "@material-ui/icons/MapSharp";
 import SubjectIcon from "@material-ui/icons/SubjectSharp";
 import Github from "@material-ui/icons/GitHub";
 import MenuOpenSharp from "@material-ui/icons/MenuOpenSharp";
+import Logo from "../Home/Logo";
 
 // Style Classes Used for the Components
 const useStyles = makeStyles((theme) => ({
@@ -42,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 // SIDEDRAWER Function
 export default function SideDrawer() {
   const classes = useStyles();
+  const theme = useTheme();
   // Stores the State and Anchor for the Drawer
   const [state, setState] = React.useState({ left: false });
   // Function to Toggle the Drawer
@@ -52,24 +55,58 @@ export default function SideDrawer() {
   const list = () => (
     <div key={uuid()} className={classes.drawerWidth}>
       <List>
+        <br />
         <ListItem key={uuid()} className={classes.brand}>
-          Safezone
+          <Logo
+            height='50px'
+            width='150px'
+            color1={theme.palette.primary.black}
+            color2={theme.palette.secondary.black}
+            shadow={theme.palette.secondary.main}
+            id1='sidebar-abc'
+            id2='sidebar-xyz'
+          />
         </ListItem>
+        <br />
         <Divider key={uuid()} />
+        <br />
         {[
-          { text: "Map", icon: <MapIcon /> },
-          { text: "Report", icon: <SubjectIcon /> },
-          { text: "Github", icon: <Github /> },
-          { text: "About", icon: <AlternateEmailIcon /> },
+          { text: "Map", icon: <MapIcon />, href: "map" },
+          { text: "Report", icon: <SubjectIcon />, href: "report" },
+          { text: "Home", icon: <AlternateEmailIcon />, href: "/" },
         ].map((item) => (
           <>
-            <ListItem key={uuid()} button={true}>
-              <ListItemIcon key={uuid()}>{item.icon}</ListItemIcon>
-              <ListItemText key={uuid()} primary={item.text} />
-            </ListItem>
+            <a
+              href={item.href}
+              style={{ textDecoration: "none", color: "black" }}
+              key={uuid()}
+            >
+              <ListItem key={uuid()} button={true}>
+                <ListItemIcon key={uuid()}>{item.icon}</ListItemIcon>
+                <ListItemText key={uuid()} primary={item.text} />
+              </ListItem>
+            </a>
+            <br />
             <Divider key={uuid()} />
+            <br />
           </>
         ))}
+        <a
+          href='https://github.com/Mayank-Sh07/ideacon'
+          target='_blank'
+          rel='noopener noreferrer'
+          style={{ textDecoration: "none", color: "black" }}
+          key={uuid()}
+        >
+          <ListItem key={uuid()} button={true}>
+            <ListItemIcon key={uuid()}>
+              <Github />
+            </ListItemIcon>
+            <ListItemText key={uuid()} primary={"Github"} />
+          </ListItem>
+        </a>
+        <br />
+        <Divider key={uuid()} />
       </List>
     </div>
   );

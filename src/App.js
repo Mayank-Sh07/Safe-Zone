@@ -66,7 +66,7 @@ export default function App() {
         </Grid>
         <Grid container direction='row' justify='center'>
           <Switch>
-            {/* <Route path='/map'>
+            <Route path='/map'>
               {isLoaded ? (
                 <SafeMap
                   data={zoneData}
@@ -75,7 +75,7 @@ export default function App() {
               ) : (
                 <h3>Loading</h3>
               )}
-            </Route> */}
+            </Route>
             <Route exact path='/'>
               <Home />
             </Route>

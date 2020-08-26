@@ -5,6 +5,7 @@ import {
   useTheme,
   Paper,
   IconButton,
+  Typography,
 } from "@material-ui/core";
 import Waves from "./Waves";
 import Logo from "./Logo";
@@ -14,6 +15,7 @@ import AssignmentSharpIcon from "@material-ui/icons/AssignmentSharp";
 import AddLocationSharpIcon from "@material-ui/icons/AddLocationSharp";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
+import MenuOpenSharp from "@material-ui/icons/MenuOpenSharp";
 
 const useStyles = makeStyles((theme) => ({
   aboutSection: {
@@ -26,9 +28,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     margin: "20px 0px 20px 0px",
     backgroundColor: theme.palette.primary.main,
+    border: "2px dashed black",
   },
   plain: {
-    padding: "15px",
+    padding: "30px",
     textAlign: "center",
     margin: "20px 0px 20px 0px",
   },
@@ -52,6 +55,8 @@ export default function Home() {
           color1={theme.palette.primary.light}
           color2={theme.palette.secondary.light}
           shadow={theme.palette.black}
+          id1='home-abc'
+          id2='home-xyz'
         />
       </Grid>
       <Grid item xs={12} style={{ marginTop: "50px" }}>
@@ -63,70 +68,108 @@ export default function Home() {
           className={classes.aboutSection}
         >
           <Grid item xs={12}>
-            <h1 className={classes.title}>About</h1>
+            <div id='ABOUT'></div>
+            <Typography variant='h1' className={classes.title}>
+              About
+            </Typography>
           </Grid>
           <Grid item xs={12}>
             <div className={classes.plain}>
               <DevicesRoundedIcon style={{ fontSize: 80 }} />
-              <h3>Title</h3>
+              <h3>Travel Safety</h3>
               <p>
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                The point of using Lorem Ipsum is that it has a more-or-less
-                normal distribution of letters, as opposed to using 'Content
-                here,
+                Safezone is a <i>Cross-platform Responsive Web Application</i>{" "}
+                made to help users <i>plan their Travelling and Routes </i>
+                appropriately based on Real-time Coronavirus case locations,
+                Visual Containment Zone data and Coronavirus case clusters.
+                Safezone currently renders data for Chennai, a metropolitan city
+                in Tamil Nadu with a significantly high number of Coronavirus
+                cases. Users can also
+                <i> Report Cases</i> in their Localities which can be visualized
+                after authentication.
               </p>
             </div>
           </Grid>
           <Grid item xs={12}>
+            <br id='FEATURES' />
+            <Typography variant='h1' className={classes.title}>
+              Features
+            </Typography>
             <br />
-            <h1 className={classes.title}>Features</h1>
             <br />
           </Grid>
           <Grid item xs={8} md={3} sm={3}>
             <Paper className={classes.paper}>
               <MapTwoToneIcon style={{ fontSize: 60 }} />
-              <h3>Title</h3>
+              <h3>Map</h3>
               <p>
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                The point of using Lorem Ipsum is that it has a more-or-less
-                normal distribution of letters, as opposed to using 'Content
-                here,
+                The Google-Map in 'Map' section is the main feature of Safezone,
+                you can visualize all the Coronavirus cases and Clusters on the
+                Map which auto locates you (make sure location services are
+                enabled) and allows you to set and alter directions to your
+                chosen destination. For more, Select the Map Item from the
+                Sidebar
               </p>
             </Paper>
           </Grid>
           <Grid item xs={8} md={3} sm={3}>
             <Paper className={classes.paper}>
               <AddLocationSharpIcon style={{ fontSize: 60 }} />
-              <h3>Title</h3>
+              <h3>Waypoints</h3>
               <p>
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                The point of using Lorem Ipsum is that it has a more-or-less
-                normal distribution of letters, as opposed to using 'Content
-                here,
+                Add waypoints to your selected Route within the 'Map' and avoid
+                all the Red Zones and Yellow Zones flooded with Coronavirus. A
+                key implimentation, adding and setting waypoints will help you
+                set the safest Route to reach your destination Corona-free. The
+                'view all Clusters' button shows all Clusters in Chennai.
               </p>
             </Paper>
           </Grid>
           <Grid item xs={8} md={3} sm={3}>
             <Paper className={classes.paper}>
               <AssignmentSharpIcon style={{ fontSize: 60 }} />
-              <h3>Title</h3>
+              <h3>Report</h3>
               <p>
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                The point of using Lorem Ipsum is that it has a more-or-less
-                normal distribution of letters, as opposed to using 'Content
-                here,
+                The 'Report' section of Safezone allows you to report your
+                residence as a Coronavirus case location by taking all the
+                necessary inputs for identification and authentication. Details
+                of the location are automatically set. Incase of any error/bug
+                feel free to Contact us using the links given in the Footer
+                below
               </p>
             </Paper>
+          </Grid>
+          <Grid item>
+            <Typography
+              variant='h5'
+              style={{
+                textAlign: "center",
+                marginTop: "30px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              Click the{" "}
+              <MenuOpenSharp
+                style={{ padding: "10px", transform: "scaleX(-1)" }}
+              />{" "}
+              Button to open the Sidebar
+            </Typography>
           </Grid>
         </Grid>
       </Grid>
       <Grid item container justify='space-evenly' alignItems='center'>
         <Grid item xs={4} sm={4} md={4}>
-          <div className={classes.plain}>Team 6</div>
+          <div
+            className={classes.plain}
+            style={{
+              border: "4px dotted black",
+              width: "50%",
+              margin: "0px auto 0px auto",
+            }}
+          >
+            Team 6
+          </div>
         </Grid>
         <Grid item xs={1} sm={1} md={1}>
           <IconButton

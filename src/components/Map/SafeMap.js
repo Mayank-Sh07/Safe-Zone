@@ -33,6 +33,13 @@ const useStyles = makeStyles((theme) => ({
   section: {
     padding: "15px",
   },
+  iconButtonLabel: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  smallLabel: {
+    fontSize: "8px",
+  },
 }));
 
 export default function SafeMap({ data, origin }) {
@@ -237,20 +244,24 @@ export default function SafeMap({ data, origin }) {
           fullWidth
           style={{ justifyContent: "space-evenly" }}
         >
-          <IconButton>
+          <IconButton classes={{ label: classes.iconButtonLabel }}>
             <HelpIcon style={{ fontSize: 50 }} />
+            <small className={classes.smallLabel}>Instructions</small>
           </IconButton>
           {route.addWaypointsView && (
             <IconButton
+              classes={{ label: classes.iconButtonLabel }}
               disabled={route.waypoints.length === 0}
               onClick={() => {
                 undoWaypoint();
               }}
             >
               <ReplayIcon style={{ fontSize: 50 }} />
+              <small className={classes.smallLabel}>Undo</small>
             </IconButton>
           )}
           <IconButton
+            classes={{ label: classes.iconButtonLabel }}
             disabled={route.directions === null}
             onClick={() => {
               toggleAddWaypointsView();
@@ -261,26 +272,35 @@ export default function SafeMap({ data, origin }) {
             ) : (
               <CheckCircleTwoToneIcon style={{ fontSize: 50 }} />
             )}
-            {/*!route.addWaypointsView ? "Add Waypoints" : "Set Waypoints"*/}
+            {!route.addWaypointsView ? (
+              <small className={classes.smallLabel}>Add Waypoints</small>
+            ) : (
+              <small className={classes.smallLabel}>Set Waypoints</small>
+            )}
           </IconButton>
           <IconButton
+            classes={{ label: classes.iconButtonLabel }}
             disabled={route.directions === null}
             onClick={() => {
               dropRoute();
             }}
           >
             <ExploreOffSharpIcon style={{ fontSize: 50 }} />
+            <small className={classes.smallLabel}>drop route</small>
           </IconButton>
           {!route.addWaypointsView && (
             <IconButton
+              classes={{ label: classes.iconButtonLabel }}
               onClick={() => {
                 toggleResetOriginView();
               }}
             >
               <EditLocationSharpIcon style={{ fontSize: 50 }} />
+              <small className={classes.smallLabel}>Reset origin</small>
             </IconButton>
           )}
           <IconButton
+            classes={{ label: classes.iconButtonLabel }}
             variant='outlined'
             color='secondary'
             onClick={() => {
@@ -288,9 +308,15 @@ export default function SafeMap({ data, origin }) {
             }}
           >
             {!showAllClusters ? (
-              <BlurCircularTwoToneIcon style={{ fontSize: 50 }} />
+              <>
+                <BlurCircularTwoToneIcon style={{ fontSize: 50 }} />
+                <small className={classes.smallLabel}>All Clusters</small>
+              </>
             ) : (
-              <BlurOffTwoToneIcon style={{ fontSize: 50 }} />
+              <>
+                <BlurOffTwoToneIcon style={{ fontSize: 50 }} />
+                <small className={classes.smallLabel}>Show Selected</small>
+              </>
             )}
           </IconButton>
         </ButtonGroup>
