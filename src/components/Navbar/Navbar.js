@@ -7,7 +7,6 @@ import {
   Toolbar,
   IconButton,
   useTheme,
-  Button,
 } from "@material-ui/core";
 import BrightnessIcon from "@material-ui/icons/Brightness7Rounded";
 // Side-drawer along with Icon
@@ -24,11 +23,15 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     minHeight: "84px",
   },
+  appbar: {
+    backgroundColor: theme.palette.primary.dark,
+  },
 }));
 
 //Function to Hide the Navbar when Scrolled
 function HideOnScroll(props) {
   const { children } = props;
+  const theme = useTheme();
   const trigger = useScrollTrigger();
   return (
     <Slide appear={false} direction='down' in={!trigger}>
@@ -38,13 +41,13 @@ function HideOnScroll(props) {
 }
 
 // NAVBAR Function
-export default function Navbar() {
+export default function Navbar({ handleThemeChange }) {
   const classes = useStyles();
   const theme = useTheme();
   return (
     <div className={classes.navContainer}>
       <HideOnScroll>
-        <AppBar>
+        <AppBar className={classes.appbar}>
           <Toolbar>
             <div className={classes.brand}>
               <Logo
@@ -57,7 +60,7 @@ export default function Navbar() {
                 id2='navbar-xyz'
               />
             </div>
-            <IconButton>
+            <IconButton onClick={handleThemeChange}>
               <BrightnessIcon />
             </IconButton>
             <SideDrawer />

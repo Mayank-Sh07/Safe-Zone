@@ -16,8 +16,9 @@ import {
 import Search from "./Search";
 // Google Map import
 import Map from "./Map";
+// Instructions import
+import Instructions from "../Instructions/Instructions";
 //Icons
-import HelpIcon from "@material-ui/icons/Help";
 import ReplayIcon from "@material-ui/icons/Replay";
 import ExploreOffSharpIcon from "@material-ui/icons/ExploreOffSharp";
 import EditLocationSharpIcon from "@material-ui/icons/EditLocationSharp";
@@ -42,12 +43,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SafeMap({ data, origin }) {
+export default function SafeMap({ data, origin, selectedZone, setZone }) {
+  console.log(data);
   const classes = useStyles();
   // Array containing all Zone Names
   const zoneNames = data.map((zone) => zone.properties.zname);
-  // Stores the Selected Zone
-  const [selectedZone, setZone] = React.useState("TEYNAMPET(119)");
   // Toggle Cluster View
   const [showAllClusters, allClustersVisible] = React.useState(false);
   // Stores User Origin, Destination, Waypoints and Toggles Reset Origin
@@ -168,7 +168,7 @@ export default function SafeMap({ data, origin }) {
 
   console.log(`RENDERED SafeMap Rendered with ROUTE as : ${route}`);
 
-  console.log(route);
+  console.log(selectedZone);
 
   return (
     <>
@@ -193,7 +193,7 @@ export default function SafeMap({ data, origin }) {
                 labelId='zone-selector-label'
                 id='zone-selector'
                 value={selectedZone}
-                variant='filled'
+                variant='standard'
                 onChange={(e) => {
                   changeZone(e);
                 }}
@@ -209,29 +209,6 @@ export default function SafeMap({ data, origin }) {
               </FormHelperText>
             </FormControl>
           </Grid>
-          {/* <Grid
-            item
-            xs={3}
-            sm={2}
-            md={2}
-            className={classes.section}
-            style={{ textAlign: "center" }}
-          >
-            <IconButton
-              variant='outlined'
-              color='secondary'
-              style={{ padding: 0 }}
-              onClick={() => {
-                toggleClusterView();
-              }}
-            >
-              {!showAllClusters ? (
-                <BlurCircularTwoToneIcon style={{ fontSize: 60 }} />
-              ) : (
-                <BlurOffTwoToneIcon style={{ fontSize: 60 }} />
-              )}
-            </IconButton>
-          </Grid> */}
         </>
       )}
       <Grid item xs={12} sm={12} md={12} className={classes.section}>
@@ -244,10 +221,7 @@ export default function SafeMap({ data, origin }) {
           fullWidth
           style={{ justifyContent: "space-evenly" }}
         >
-          <IconButton classes={{ label: classes.iconButtonLabel }}>
-            <HelpIcon style={{ fontSize: 50 }} />
-            <small className={classes.smallLabel}>Instructions</small>
-          </IconButton>
+          <Instructions />
           {route.addWaypointsView && (
             <IconButton
               classes={{ label: classes.iconButtonLabel }}

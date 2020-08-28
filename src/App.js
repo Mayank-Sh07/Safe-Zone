@@ -4,9 +4,12 @@ import database from "./Firebase/firebaseConfig";
 import { makeStyles, Grid } from "@material-ui/core";
 import Navbar from "./components/Navbar/Navbar";
 import SafeMap from "./components/Map/SafeMap";
+import Report from "./components/Report/Report";
 import { data } from "./Data/data";
 import { Switch, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
+import Loading from "./components/Loading/Loading";
+import { CustomThemeContext } from "./Themes/customThemeProvider";
 
 // Styling classes used in the components
 const useStyles = makeStyles((theme) => ({
@@ -24,34 +27,44 @@ export default function App() {
   // Checks if Data is Loaded
   const [isLoaded, hasLoaded] = useState(false);
   // Retrieving User Location
-  const { longitude, latitude, accuracy, error } = usePosition();
+  const { longitude, latitude, accuracy, error } = usePosition({
+    enableHighAccuracy: true,
+  });
+  // Stores the Selected Zone
+  const [selectedZone, setZone] = useState("TEYNAMPET(119)");
   //CSS classes
   const classes = useStyles();
+  const { currentTheme, setTheme } = React.useContext(CustomThemeContext);
+  const isDark = Boolean(currentTheme === "dark");
 
   //useEffect Hook to emulate ComponentWillMount()
   useEffect(() => {
-    // database
-    //   .ref()
-    //   .once("value")
-    //   .then((ret) => {
-    //     setZoneData(ret.val());
-    //     hasLoaded(true);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-
-    //set the ZoneData
-    setZoneData(data);
+    database
+      .ref()
+      .child("chennai")
+      .once("value")
+      .then((ret) => {
+        setZoneData(ret.val());
+        hasLoaded(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        //set the ZoneData incase call to database fails
+        setZoneData(data);
+      });
     console.log("Zone Data is set => RE-RENDER APP");
-    const timer = setTimeout(() => {
-      hasLoaded(true);
-      console.log("ALL DATA SET");
-    }, 3000);
-    return () => clearTimeout(timer);
   }, []);
 
+  const handleThemeChange = (event) => {
+    if (isDark) {
+      setTheme("light");
+    } else {
+      setTheme("dark");
+    }
+  };
+
   console.log(`App Rendered! has data loaded? : ${isLoaded}`);
+  console.log(accuracy);
 
   return (
     <div className={classes.device}>
@@ -62,18 +75,32 @@ export default function App() {
         justify='space-between'
       >
         <Grid item xs={12} sm={12} md={12} style={{}}>
-          <Navbar />
+          <Navbar handleThemeChange={handleThemeChange} />
         </Grid>
         <Grid container direction='row' justify='center'>
           <Switch>
-            <Route path='/map'>
+            <Route exact path='/map'>
               {isLoaded ? (
                 <SafeMap
                   data={zoneData}
                   origin={{ lat: latitude, lng: longitude }}
+                  setZone={setZone}
+                  selectedZone={selectedZone}
                 />
               ) : (
-                <h3>Loading</h3>
+                <Loading />
+              )}
+            </Route>
+            <Route exact path='/report'>
+              {isLoaded ? (
+                <Report
+                  userLocation={{ lat: latitude, lng: longitude }}
+                  data={zoneData}
+                  setZone={setZone}
+                  selectedZone={selectedZone}
+                />
+              ) : (
+                <Loading />
               )}
             </Route>
             <Route exact path='/'>

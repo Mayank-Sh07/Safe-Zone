@@ -47,7 +47,12 @@ export default function Map({
       Markers.push(...zone.casecoords);
     });
     return Markers.map((casecoord) => (
-      <Marker visible={true} key={uuid()} position={casecoord} />
+      <Marker
+        visible={true}
+        key={uuid()}
+        position={casecoord}
+        icon={"assets/covid.svg"}
+      />
     ));
   }
 
@@ -60,7 +65,12 @@ export default function Map({
       }
     });
     return Markers.map((casecoord) => (
-      <Marker visible={true} key={uuid()} position={casecoord} />
+      <Marker
+        visible={true}
+        key={uuid()}
+        position={casecoord}
+        icon={"assets/covid.svg"}
+      />
     ));
   }
 
@@ -68,7 +78,7 @@ export default function Map({
   function polygonOptions(zone) {
     if (zone.properties.zname === selectedZone && showAllClusters === false) {
       return {
-        strokeColor: "#1B03A3",
+        strokeColor: "#000000",
         strokeOpacity: 1,
         strokeWeight: 2.5,
         fillColor: zone.properties.fillColor,
@@ -132,6 +142,21 @@ export default function Map({
         />
       )}
 
+      {!route.resetOriginView &&
+        data.map((zone) => (
+          <Polygon
+            path={zone.coords}
+            key={uuid()}
+            editable={false}
+            options={polygonOptions(zone)}
+            onClick={mapClick}
+            onDblClick={(e) => {
+              if (!route.addWaypointsView)
+                controllers.changeZone(e, zone.properties.zname);
+            }}
+          ></Polygon>
+        ))}
+
       {!route.resetOriginView && !route.addWaypointsView && (
         <>
           <MarkerClusterer
@@ -153,19 +178,6 @@ export default function Map({
               zIndex: 9998,
             }}
           />
-
-          {data.map((zone) => (
-            <Polygon
-              path={zone.coords}
-              key={uuid()}
-              editable={false}
-              options={polygonOptions(zone)}
-              onClick={mapClick}
-              onDblClick={(e) => {
-                controllers.changeZone(e, zone.properties.zname);
-              }}
-            ></Polygon>
-          ))}
         </>
       )}
     </GoogleMap>

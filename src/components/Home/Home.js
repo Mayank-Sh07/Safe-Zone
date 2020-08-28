@@ -19,7 +19,7 @@ import MenuOpenSharp from "@material-ui/icons/MenuOpenSharp";
 
 const useStyles = makeStyles((theme) => ({
   aboutSection: {
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.primary.main,
     padding: "50px 0px 50px 0px",
     marginTop: "-5px",
   },
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "15px",
     textAlign: "center",
     margin: "20px 0px 20px 0px",
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.secondary.light,
     border: "2px dashed black",
   },
   plain: {
@@ -60,7 +60,7 @@ export default function Home() {
         />
       </Grid>
       <Grid item xs={12} style={{ marginTop: "50px" }}>
-        <Waves width='inherit' color={theme.palette.primary.light} />
+        <Waves width='inherit' color={theme.palette.primary.main} />
         <Grid
           container
           alignItems='center'
@@ -75,7 +75,7 @@ export default function Home() {
           </Grid>
           <Grid item xs={12}>
             <div className={classes.plain}>
-              <DevicesRoundedIcon style={{ fontSize: 80 }} />
+              <DevicesRoundedIcon style={{ fontSize: 80, color: "#252A34" }} />
               <h3>Travel Safety</h3>
               <p>
                 Safezone is a <i>Cross-platform Responsive Web Application</i>{" "}
@@ -100,7 +100,7 @@ export default function Home() {
           </Grid>
           <Grid item xs={8} md={3} sm={3}>
             <Paper className={classes.paper}>
-              <MapTwoToneIcon style={{ fontSize: 60 }} />
+              <MapTwoToneIcon style={{ fontSize: 60, color: "#1ec0ff" }} />
               <h3>Map</h3>
               <p>
                 The Google-Map in 'Map' section is the main feature of Safezone,
@@ -114,7 +114,9 @@ export default function Home() {
           </Grid>
           <Grid item xs={8} md={3} sm={3}>
             <Paper className={classes.paper}>
-              <AddLocationSharpIcon style={{ fontSize: 60 }} />
+              <AddLocationSharpIcon
+                style={{ fontSize: 60, color: "#E73A38" }}
+              />
               <h3>Waypoints</h3>
               <p>
                 Add waypoints to your selected Route within the 'Map' and avoid
@@ -127,7 +129,7 @@ export default function Home() {
           </Grid>
           <Grid item xs={8} md={3} sm={3}>
             <Paper className={classes.paper}>
-              <AssignmentSharpIcon style={{ fontSize: 60 }} />
+              <AssignmentSharpIcon style={{ fontSize: 60, color: "#364857" }} />
               <h3>Report</h3>
               <p>
                 The 'Report' section of Safezone allows you to report your
@@ -177,13 +179,13 @@ export default function Home() {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <LinkedInIcon />
+            <LinkedInIcon style={{ color: "darkslateblue" }} />
           </IconButton>
         </Grid>
         <Grid item xs={7} sm={7} md={7}>
           <div className={classes.plain} style={{ textAlign: "end" }}>
             &copy; Copyrights 2020, made with{" "}
-            <FavoriteIcon style={{ paddingTop: "3px" }} />
+            <FavoriteIcon style={{ paddingTop: "3px", color: "#c91b26" }} />
           </div>
         </Grid>
       </Grid>

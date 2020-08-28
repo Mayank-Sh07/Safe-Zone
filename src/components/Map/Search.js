@@ -68,7 +68,7 @@ export default function Search({ setRoute, resetOriginView }) {
               })}
               label='Enter Destination'
               fullWidth
-              variant='filled'
+              variant='outlined'
             />
             <div className={classes.autocompleteDropdownContainer}>
               {loading && <div>Loading...</div>}

@@ -12,7 +12,7 @@ import {
   useTheme,
 } from "@material-ui/core";
 import uuid from "react-uuid";
-import AlternateEmailIcon from "@material-ui/icons/AlternateEmailSharp";
+import HomeIcon from "@material-ui/icons/HomeSharp";
 import MapIcon from "@material-ui/icons/MapSharp";
 import SubjectIcon from "@material-ui/icons/SubjectSharp";
 import Github from "@material-ui/icons/GitHub";
@@ -73,7 +73,7 @@ export default function SideDrawer() {
         {[
           { text: "Map", icon: <MapIcon />, href: "map" },
           { text: "Report", icon: <SubjectIcon />, href: "report" },
-          { text: "Home", icon: <AlternateEmailIcon />, href: "/" },
+          { text: "Home", icon: <HomeIcon />, href: "/" },
         ].map((item) => (
           <>
             <a
