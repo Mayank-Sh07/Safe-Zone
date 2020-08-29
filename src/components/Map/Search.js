@@ -12,8 +12,8 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     zIndex: 1000,
     padding: "0px 15px 0px 15px",
-    minWidth: "inherit",
-    maxWidth: "inherit",
+    minWidth: "61%",
+    maxWidth: "62%",
   },
 }));
 

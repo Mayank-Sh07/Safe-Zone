@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
   item: {
     margin: "20px 10px 20px 10px",
   },
+  background: {
+    backgroundColor: theme.palette.secondary.main,
+  },
 }));
 
 export default function Instructions() {
@@ -52,7 +55,12 @@ export default function Instructions() {
         <HelpIcon style={{ fontSize: 50, color: "F0000" }} />
         <small className={classes.smallLabel}>Instructions</small>
       </IconButton>
-      <Dialog fullScreen open={open} onClose={handleClose}>
+      <Dialog
+        fullScreen
+        open={open}
+        onClose={handleClose}
+        className={classes.background}
+      >
         <DialogTitle id='alert-dialog-title'>
           {"Instructions for Useage"}
         </DialogTitle>

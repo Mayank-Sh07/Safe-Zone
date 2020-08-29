@@ -19,7 +19,7 @@ import MenuOpenSharp from "@material-ui/icons/MenuOpenSharp";
 
 const useStyles = makeStyles((theme) => ({
   aboutSection: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.light,
     padding: "50px 0px 50px 0px",
     marginTop: "-5px",
   },
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "15px",
     textAlign: "center",
     margin: "20px 0px 20px 0px",
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: theme.palette.secondary.main,
     border: "2px dashed black",
   },
   plain: {
@@ -39,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     fontWeight: "10px",
     fontSize: "2em",
+  },
+  footer: {
+    backgroundColor: theme.palette.background,
   },
 }));
 
@@ -60,7 +63,7 @@ export default function Home() {
         />
       </Grid>
       <Grid item xs={12} style={{ marginTop: "50px" }}>
-        <Waves width='inherit' color={theme.palette.primary.main} />
+        <Waves width='inherit' color={theme.palette.primary.light} />
         <Grid
           container
           alignItems='center'
@@ -99,7 +102,7 @@ export default function Home() {
             <br />
           </Grid>
           <Grid item xs={8} md={3} sm={3}>
-            <Paper className={classes.paper}>
+            <Paper elevation={11} className={classes.paper}>
               <MapTwoToneIcon style={{ fontSize: 60, color: "#1ec0ff" }} />
               <h3>Map</h3>
               <p>
@@ -113,7 +116,7 @@ export default function Home() {
             </Paper>
           </Grid>
           <Grid item xs={8} md={3} sm={3}>
-            <Paper className={classes.paper}>
+            <Paper elevation={11} className={classes.paper}>
               <AddLocationSharpIcon
                 style={{ fontSize: 60, color: "#E73A38" }}
               />
@@ -128,7 +131,7 @@ export default function Home() {
             </Paper>
           </Grid>
           <Grid item xs={8} md={3} sm={3}>
-            <Paper className={classes.paper}>
+            <Paper elevation={11} className={classes.paper}>
               <AssignmentSharpIcon style={{ fontSize: 60, color: "#364857" }} />
               <h3>Report</h3>
               <p>
@@ -160,7 +163,13 @@ export default function Home() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item container justify='space-evenly' alignItems='center'>
+      <Grid
+        item
+        container
+        justify='space-evenly'
+        alignItems='center'
+        className={classes.footer}
+      >
         <Grid item xs={4} sm={4} md={4}>
           <div
             className={classes.plain}

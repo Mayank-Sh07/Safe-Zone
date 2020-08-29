@@ -23,11 +23,11 @@ const useStyles = makeStyles((theme) => ({
   reportSheet: {
     maxHeight: "120vh",
     width: "100%",
-    // backgroundColor: theme.palette.primary.light,
-    border: `2px dashed ${theme.palette.primary.dark}`,
+    border: `4px dashed ${theme.palette.primary.dark}`,
     padding: "30px",
     textAlign: "center",
     marginLeft: "-15px",
+    backgroundColor: theme.palette.secondary.light,
   },
   inputRow: {
     margin: "30px 0px 30px 0px",
@@ -138,7 +138,11 @@ export default function Report({ userLocation, data, setZone, selectedZone }) {
                     }}
                   >
                     {zoneNames.map((name) => (
-                      <MenuItem key={uuid()} value={name}>
+                      <MenuItem
+                        key={uuid()}
+                        style={{ backgroundColor: "white" }}
+                        value={name}
+                      >
                         {name}
                       </MenuItem>
                     ))}
@@ -157,11 +161,11 @@ export default function Report({ userLocation, data, setZone, selectedZone }) {
                   multiline
                 />
                 <Button
-                  variant='outlined'
+                  variant='contained'
                   className={classes.inputRow}
                   endIcon={<SendIcon />}
                   type='submit'
-                  color='secondary'
+                  color='primary'
                 >
                   Report Case
                 </Button>

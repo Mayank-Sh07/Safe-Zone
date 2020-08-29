@@ -15,6 +15,7 @@ import { CustomThemeContext } from "./Themes/customThemeProvider";
 const useStyles = makeStyles((theme) => ({
   device: {
     flexGrow: 1,
+    backgroundColor: theme.palette.background,
   },
   pageContainer: {
     padding: "0px",
@@ -27,7 +28,7 @@ export default function App() {
   // Checks if Data is Loaded
   const [isLoaded, hasLoaded] = useState(false);
   // Retrieving User Location
-  const { longitude, latitude, accuracy, error } = usePosition({
+  const { longitude, latitude, accuracy, error } = usePosition(false, {
     enableHighAccuracy: true,
   });
   // Stores the Selected Zone

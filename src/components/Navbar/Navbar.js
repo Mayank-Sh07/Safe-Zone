@@ -24,14 +24,13 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "84px",
   },
   appbar: {
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.secondary.dark,
   },
 }));
 
 //Function to Hide the Navbar when Scrolled
 function HideOnScroll(props) {
   const { children } = props;
-  const theme = useTheme();
   const trigger = useScrollTrigger();
   return (
     <Slide appear={false} direction='down' in={!trigger}>
@@ -53,9 +52,9 @@ export default function Navbar({ handleThemeChange }) {
               <Logo
                 height='50px'
                 width='150px'
-                color1={theme.palette.primary.black}
-                color2={theme.palette.secondary.black}
-                shadow={theme.palette.primary.main}
+                color1={theme.palette.primary.main}
+                color2={theme.palette.primary.main}
+                shadow={theme.palette.secondary.dark}
                 id1='navbar-abc'
                 id2='navbar-xyz'
               />

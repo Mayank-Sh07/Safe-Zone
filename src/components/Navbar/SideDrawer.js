@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     width: 200,
   },
   drawerStyles: {
-    background: theme.palette.secondary.light,
+    background: theme.palette.primary.light,
   },
   brand: {
     textAlign: "center",
@@ -60,9 +60,9 @@ export default function SideDrawer() {
           <Logo
             height='50px'
             width='150px'
-            color1={theme.palette.primary.black}
-            color2={theme.palette.secondary.black}
-            shadow={theme.palette.secondary.main}
+            color1={theme.palette.primary.main}
+            color2={theme.palette.primary.main}
+            shadow={theme.palette.primary.light}
             id1='sidebar-abc'
             id2='sidebar-xyz'
           />

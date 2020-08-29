@@ -199,7 +199,11 @@ export default function SafeMap({ data, origin, selectedZone, setZone }) {
                 }}
               >
                 {zoneNames.map((name) => (
-                  <MenuItem key={uuid()} value={name}>
+                  <MenuItem
+                    key={uuid()}
+                    style={{ backgroundColor: "white" }}
+                    value={name}
+                  >
                     {name}
                   </MenuItem>
                 ))}
@@ -217,7 +221,7 @@ export default function SafeMap({ data, origin, selectedZone, setZone }) {
       <Grid item xs={6} sm={6} md={6} className={classes.section}>
         <ButtonGroup
           size='large'
-          color='secondary'
+          color='primary'
           fullWidth
           style={{ justifyContent: "space-evenly" }}
         >
@@ -276,7 +280,6 @@ export default function SafeMap({ data, origin, selectedZone, setZone }) {
           <IconButton
             classes={{ label: classes.iconButtonLabel }}
             variant='outlined'
-            color='secondary'
             onClick={() => {
               toggleClusterView();
             }}

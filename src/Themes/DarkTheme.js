@@ -2,17 +2,20 @@ import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 
 let theme = createMuiTheme({
   palette: {
+    type: "dark",
     primary: {
-      main: "#414141",
+      main: "#fafafa", //black -> buttons, loading-logo, logos
+      light: "#ff5722", //light green -> waves, home bg, side-drawer and its logo shadow,
     },
     secondary: {
-      main: "#9c27b0",
+      main: "#ff7043", // Footer, cards, loading liquid, instructions
+      light: "#ffb74d", // home logo , bubble color, report sheet bg
+      dark: "#424242", // Navbar
     },
+    background: "#272727", //background
   },
 });
 
 theme = responsiveFontSizes(theme);
 
 export default theme;
-
-// #5BE7C4
