@@ -8,7 +8,7 @@ let theme = createMuiTheme({
       light: "#ff5722", //light green -> waves, home bg, side-drawer and its logo shadow,
     },
     secondary: {
-      main: "#ff7043", // Footer, cards, loading liquid, instructions
+      main: "#c30000", // Footer, cards, loading liquid, instructions
       light: "#ffb74d", // home logo , bubble color, report sheet bg
       dark: "#424242", // Navbar
     },

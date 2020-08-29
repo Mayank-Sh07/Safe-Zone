@@ -201,7 +201,7 @@ export default function SafeMap({ data, origin, selectedZone, setZone }) {
                 {zoneNames.map((name) => (
                   <MenuItem
                     key={uuid()}
-                    style={{ backgroundColor: "white" }}
+                    style={{ backgroundColor: "darkgrey" }}
                     value={name}
                   >
                     {name}

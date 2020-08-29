@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Loading = (props) => {
+const Loading = ({ message }) => {
   const classes = useStyles();
   const theme = useTheme();
   return (
@@ -34,7 +34,11 @@ const Loading = (props) => {
           bubbleColor={theme.palette.secondary.light}
           liquidColor={theme.palette.secondary.main}
         />
-        <p>Safezone is Loading</p>
+        {message !== "Loading..." ? (
+          <p>Kindly Enable Location Services and Reload</p>
+        ) : (
+          <p>{message}</p>
+        )}
       </header>
     </div>
   );

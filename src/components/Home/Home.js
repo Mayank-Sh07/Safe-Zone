@@ -174,9 +174,10 @@ export default function Home() {
           <div
             className={classes.plain}
             style={{
-              border: "4px dotted black",
+              border: "4px dotted gray",
               width: "50%",
               margin: "0px auto 0px auto",
+              color: "gray",
             }}
           >
             Team 6
@@ -192,7 +193,10 @@ export default function Home() {
           </IconButton>
         </Grid>
         <Grid item xs={7} sm={7} md={7}>
-          <div className={classes.plain} style={{ textAlign: "end" }}>
+          <div
+            className={classes.plain}
+            style={{ textAlign: "end", color: "gray" }}
+          >
             &copy; Copyrights 2020, made with{" "}
             <FavoriteIcon style={{ paddingTop: "3px", color: "#c91b26" }} />
           </div>

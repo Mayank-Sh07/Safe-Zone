@@ -24,9 +24,7 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: "120vh",
     width: "100%",
     border: `4px dashed ${theme.palette.primary.dark}`,
-    padding: "30px",
     textAlign: "center",
-    marginLeft: "-15px",
     backgroundColor: theme.palette.secondary.light,
   },
   inputRow: {
@@ -140,7 +138,7 @@ export default function Report({ userLocation, data, setZone, selectedZone }) {
                     {zoneNames.map((name) => (
                       <MenuItem
                         key={uuid()}
-                        style={{ backgroundColor: "white" }}
+                        style={{ backgroundColor: "darkgrey" }}
                         value={name}
                       >
                         {name}

@@ -24,11 +24,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function App() {
   // Holds the required Data
-  const [zoneData, setZoneData] = useState(null);
+  const [fbData, setData] = useState(null);
   // Checks if Data is Loaded
   const [isLoaded, hasLoaded] = useState(false);
   // Retrieving User Location
-  const { longitude, latitude, accuracy, error } = usePosition(false, {
+  const { longitude, latitude, error } = usePosition(false, {
     enableHighAccuracy: true,
   });
   // Stores the Selected Zone
@@ -42,16 +42,16 @@ export default function App() {
   useEffect(() => {
     database
       .ref()
-      .child("chennai")
       .once("value")
       .then((ret) => {
-        setZoneData(ret.val());
+        console.log(ret.val());
+        setData(ret.val());
         hasLoaded(true);
       })
       .catch((err) => {
         console.log(err);
-        //set the ZoneData incase call to database fails
-        setZoneData(data);
+        //set the fbData incase call to database fails
+        setData(data);
       });
     console.log("Zone Data is set => RE-RENDER APP");
   }, []);
@@ -65,7 +65,6 @@ export default function App() {
   };
 
   console.log(`App Rendered! has data loaded? : ${isLoaded}`);
-  console.log(accuracy);
 
   return (
     <div className={classes.device}>
@@ -79,35 +78,40 @@ export default function App() {
           <Navbar handleThemeChange={handleThemeChange} />
         </Grid>
         <Grid container direction='row' justify='center'>
-          <Switch>
-            <Route exact path='/map'>
-              {isLoaded ? (
-                <SafeMap
-                  data={zoneData}
-                  origin={{ lat: latitude, lng: longitude }}
-                  setZone={setZone}
-                  selectedZone={selectedZone}
-                />
-              ) : (
-                <Loading />
-              )}
-            </Route>
-            <Route exact path='/report'>
-              {isLoaded ? (
-                <Report
-                  userLocation={{ lat: latitude, lng: longitude }}
-                  data={zoneData}
-                  setZone={setZone}
-                  selectedZone={selectedZone}
-                />
-              ) : (
-                <Loading />
-              )}
-            </Route>
-            <Route exact path='/'>
-              <Home />
-            </Route>
-          </Switch>
+          {error === null ? (
+            <Switch>
+              <Route exact path='/map'>
+                {isLoaded ? (
+                  <SafeMap
+                    data={fbData.chennai}
+                    origin={{ lat: latitude, lng: longitude }}
+                    setZone={setZone}
+                    selectedZone={selectedZone}
+                  />
+                ) : (
+                  <Loading message='Loading...' />
+                )}
+              </Route>
+              <Route exact path='/report'>
+                {isLoaded ? (
+                  <Report
+                    userLocation={{ lat: latitude, lng: longitude }}
+                    data={fbData.chennai}
+                    reportData={fbData.reportData}
+                    setZone={setZone}
+                    selectedZone={selectedZone}
+                  />
+                ) : (
+                  <Loading message='Loading...' />
+                )}
+              </Route>
+              <Route exact path='/'>
+                <Home />
+              </Route>
+            </Switch>
+          ) : (
+            <Loading message={error} />
+          )}
         </Grid>
       </Grid>
     </div>
